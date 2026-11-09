@@ -6,7 +6,7 @@ scanne WiFi/Bluetooth via un ESP32 USB, historise tout dans SQLite. Déployée a
 
 ## 2. Structure du dépôt
 ```
-tp-ia/
+Antivirus1999/
 ├── app/
 │   ├── app.py        # routes Flask (/, /scan, /cves, /wireless, /history, /export.sql)
 │   ├── scanner.py    # moteur d'analyse : SHA-256, signatures, heuristiques, ClamAV
