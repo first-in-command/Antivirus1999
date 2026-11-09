@@ -1,0 +1,15 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ title }}</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;background:#f4f6f8;color:#1c2430}
+nav{background:#1c2430;padding:12px 24px;display:flex;gap:20px;align-items:center}
+nav b{color:#fff;margin-right:auto}nav a{color:#9fc5ff;text-decoration:none}
+main{max-width:1000px;margin:24px auto;padding:0 16px}
+.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:20px;box-shadow:0 1px 4px #0002;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:6px 8px;border-bottom:1px solid #e3e7ec;vertical-align:top}
+button,input{padding:8px 12px;font-size:14px}button{background:#2563eb;color:#fff;border:0;border-radius:6px;cursor:pointer}
+.SAIN{color:#15803d}.SUSPECT{color:#b45309}.MALVEILLANT{color:#b91c1c}.err{color:#b91c1c}
+</style></head><body>
+<nav><b>{{ title }}</b><a href="/">Scan fichier</a><a href="/cves">CVE</a><a href="/wireless">WiFi / Bluetooth</a><a href="/history">Historique</a><a href="/export.sql">Export .sql</a></nav>
+<main>{% block content %}{% endblock %}</main></body></html>

@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Historique des scans de fichiers</h2><table>
+<tr><th>#</th><th>Date</th><th>Fichier</th><th>SHA-256</th><th>Verdict</th><th>Score</th></tr>
+{% for s in scans %}<tr><td>{{ s.id }}</td><td>{{ s.created_at }}</td><td>{{ s.filename }}</td>
+<td><code>{{ s.sha256[:16] }}…</code></td><td class="{{ s.verdict }}">{{ s.verdict }}</td><td>{{ s.score }}</td></tr>
+{% else %}<tr><td colspan="6">Aucun scan.</td></tr>{% endfor %}</table></div>
+<div class="card"><h2>Historique des scans WiFi / Bluetooth</h2><table>
+<tr><th>Date</th><th>Type</th><th>Nom</th><th>Adresse</th><th>RSSI</th></tr>
+{% for w in wireless %}<tr><td>{{ w.created_at }}</td><td>{{ w.kind }}</td><td>{{ w.name }}</td><td>{{ w.address }}</td><td>{{ w.rssi }}</td></tr>
+{% else %}<tr><td colspan="5">Aucun scan.</td></tr>{% endfor %}</table></div>
+{% endblock %}

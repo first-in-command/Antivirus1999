@@ -1,0 +1,25 @@
+services:
+  web:
+    build: .
+    ports: ["5000:5000"]
+    environment:
+      APP_TITLE: "TP IA NOM PRENOM"          # <-- remplacer par votre NOM PRENOM
+      DB_PATH: /data/scans.db
+      CLAMD_HOST: clamav
+      NVD_API_KEY: ${NVD_API_KEY:-}
+      # Mode 1 (Linux / WSL2 + usbipd) : accès direct au port série
+      ESP32_PORT: /dev/ttyUSB0
+      # Mode 2 (Docker Desktop Windows/Mac) : pont série lancé sur l'hôte
+      ESP32_BRIDGE_URL: ${ESP32_BRIDGE_URL:-}
+    volumes:
+      - db_data:/data
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    depends_on: [clamav]
+    # devices: ["/dev/ttyUSB0:/dev/ttyUSB0"]   # décommenter en mode 1
+  clamav:
+    image: clamav/clamav:stable
+    restart: unless-stopped
+    volumes: [clamav_db:/var/lib/clamav]
+volumes:
+  db_data:
+  clamav_db:

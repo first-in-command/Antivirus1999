@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Scan WiFi / Bluetooth (ESP32)</h2>
+<form method="post" style="display:flex;gap:10px"><button name="kind" value="wifi">Scanner le WiFi</button><button name="kind" value="ble">Scanner le Bluetooth</button></form>
+{% if error %}<p class="err">{{ error }}</p>{% endif %}</div>
+{% if results %}<div class="card"><h3>{{ results|length }} résultat(s) — {{ kind }}</h3><table>
+<tr><th>Nom</th><th>Adresse</th><th>RSSI</th><th>Détails</th></tr>
+{% for d in results %}<tr><td>{{ d.ssid or d.name }}</td><td>{{ d.bssid or d.address }}</td><td>{{ d.rssi }} dBm</td>
+<td>{% if d.channel %}canal {{ d.channel }}{% endif %} {{ d.auth }}</td></tr>{% endfor %}</table></div>{% endif %}
+{% endblock %}

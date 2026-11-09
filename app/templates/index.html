@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Scanner un fichier</h2>
+<form method="post" action="/scan" enctype="multipart/form-data">
+<input type="file" name="file" required> <button>Analyser</button></form></div>
+{% if result %}<div class="card"><h3>Résultat : <span class="{{ result.verdict }}">{{ result.verdict }}</span> (score {{ result.score }}/100)</h3>
+<p><b>{{ result.filename }}</b> — {{ result.size }} octets<br>SHA-256 : <code>{{ result.sha256 }}</code><br>Moteurs : {{ result.engine }}</p>
+<ul>{% for d in result.details %}<li>{{ d }}</li>{% else %}<li>Aucun indicateur détecté.</li>{% endfor %}</ul></div>{% endif %}
+{% endblock %}

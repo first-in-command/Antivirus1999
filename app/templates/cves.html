@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block content %}
+<div class="card"><h2>Vulnérabilités (CVE)</h2>
+<form><input name="q" value="{{ q }}" placeholder="ex : openssl, apache, wifi">
+<label><input type="checkbox" name="online" value="1" checked> Interroger NVD</label> <button>Rechercher</button></form>
+{% if error %}<p class="err">{{ error }}</p>{% endif %}</div>
+<div class="card"><table><tr><th>CVE</th><th>CVSS</th><th>Description</th><th>Solution proposée</th></tr>
+{% for c in cves %}<tr><td>{{ c.cve_id }}<br><small>{{ c.published }}</small></td><td>{{ c.cvss }}<br>{{ c.severity }}</td>
+<td>{{ c.description[:300] }}</td><td>{{ c.solution }}</td></tr>
+{% else %}<tr><td colspan="4">Aucune CVE en base. Lancez une recherche.</td></tr>{% endfor %}</table></div>
+{% endblock %}
